@@ -1,10 +1,12 @@
 package org.testcontainers.junit.wait;
 
+import com.google.common.util.concurrent.Uninterruptibles;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 import org.rnorth.ducttape.RetryCountExceededException;
 import org.testcontainers.containers.wait.HostPortWaitStrategy;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -39,6 +41,10 @@ public class HostPortWaitStrategyTest extends AbstractWaitStrategyTest<HostPortW
         return new HostPortWaitStrategy() {
             @Override
             protected void waitUntilReady() {
+
+                // Allow the container to fail to start up for the test
+                Uninterruptibles.sleepUninterruptibly(1, TimeUnit.SECONDS);
+
                 // blocks until ready or timeout occurs
                 super.waitUntilReady();
                 ready.set(true);

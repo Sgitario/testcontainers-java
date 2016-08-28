@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  * @author Pete Cornish {@literal <outofcoffee@gmail.com>}
  */
 public abstract class AbstractWaitStrategyTest<W extends WaitStrategy> {
-    private static final long WAIT_TIMEOUT_MILLIS = 3000;
+    private static final long WAIT_TIMEOUT_MILLIS = 3_000;
     private static final String IMAGE_NAME = "alpine:latest";
 
     /**
