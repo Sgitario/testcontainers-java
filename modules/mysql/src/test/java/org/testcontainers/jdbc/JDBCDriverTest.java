@@ -28,12 +28,12 @@ public class JDBCDriverTest {
 
     @Test
     public void testMySQLWithVersion() throws SQLException {
-        performSimpleTest("jdbc:tc:mysql:5.5.43://hostname/databasename");
+        performSimpleTest("jdbc:tc:mysql:5.5.43://hostname/databasename?TC_MY_CNF=conf/my.cnf");
     }
 
     @Test
     public void testMySQLWithNoSpecifiedVersion() throws SQLException {
-        performSimpleTest("jdbc:tc:mysql://hostname/databasename");
+        performSimpleTest("jdbc:tc:mysql://hostname/databasename?TC_MY_CNF=conf/my.cnf");
     }
 
     @Test
@@ -52,21 +52,21 @@ public class JDBCDriverTest {
 
     @Test
     public void testMySQLWithClasspathInitScript() throws SQLException {
-        performSimpleTest("jdbc:tc:mysql://hostname/databasename?TC_INITSCRIPT=somepath/init_mysql.sql");
+        performSimpleTest("jdbc:tc:mysql://hostname/databasename?TC_INITSCRIPT=somepath/init_mysql.sql&TC_MY_CNF=conf/my.cnf");
 
-        performTestForScriptedSchema("jdbc:tc:mysql://hostname/databasename?TC_INITSCRIPT=somepath/init_mysql.sql");
+        performTestForScriptedSchema("jdbc:tc:mysql://hostname/databasename?TC_INITSCRIPT=somepath/init_mysql.sql&TC_MY_CNF=conf/my.cnf");
     }
 
     @Test
     public void testMySQLWithClasspathInitFunction() throws SQLException {
-        performSimpleTest("jdbc:tc:mysql://hostname/databasename?TC_INITFUNCTION=org.testcontainers.jdbc.JDBCDriverTest::sampleInitFunction");
+        performSimpleTest("jdbc:tc:mysql://hostname/databasename?TC_MY_CNF=conf/my.cnf&TC_INITFUNCTION=org.testcontainers.jdbc.JDBCDriverTest::sampleInitFunction");
 
-        performTestForScriptedSchema("jdbc:tc:mysql://hostname/databasename?TC_INITFUNCTION=org.testcontainers.jdbc.JDBCDriverTest::sampleInitFunction");
+        performTestForScriptedSchema("jdbc:tc:mysql://hostname/databasename?TC_MY_CNF=conf/my.cnf&TC_INITFUNCTION=org.testcontainers.jdbc.JDBCDriverTest::sampleInitFunction");
     }
 
     @Test
     public void testMySQLWithQueryParams() throws SQLException {
-        performSimpleTestWithCharacterSet("jdbc:tc:mysql://hostname/databasename?useUnicode=yes&characterEncoding=utf8");
+        performSimpleTestWithCharacterSet("jdbc:tc:mysql://hostname/databasename?useUnicode=yes&characterEncoding=utf8&TC_MY_CNF=conf/my.cnf");
     }
 
     private void performSimpleTest(String jdbcUrl) throws SQLException {
