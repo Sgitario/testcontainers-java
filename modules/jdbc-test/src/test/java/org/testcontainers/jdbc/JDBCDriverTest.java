@@ -69,6 +69,13 @@ public class JDBCDriverTest {
         performSimpleTestWithCharacterSet("jdbc:tc:mysql://hostname/databasename?useUnicode=yes&characterEncoding=utf8");
     }
 
+    @Test
+    public void testPostgreSQLWithNoSpecifiedVersion() throws SQLException {
+        performSimpleTest("jdbc:tc:postgresql://hostname/databasename");
+    }
+
+
+
     private void performSimpleTest(String jdbcUrl) throws SQLException {
         HikariDataSource dataSource = getDataSource(jdbcUrl, 1);
         new QueryRunner(dataSource).query("SELECT 1", new ResultSetHandler<Object>() {
